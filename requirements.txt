@@ -1,0 +1,5 @@
+datetime
+lxml
+python-dotenv
+requests
+yt-dlp

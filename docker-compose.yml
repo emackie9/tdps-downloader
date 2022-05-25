@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  downloader:
+    build:
+      context: .
+    image: tdps-downloader:latest
+    command: [ "python", "./tdps-downloader.py" ]
+    volumes:
+      - ./downloads:/app/downloads
+      - .env:/app/.env
