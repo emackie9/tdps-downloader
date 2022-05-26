@@ -7,12 +7,11 @@ Scrapes David Pakman's website for links for today's full show and bonus show fo
 |---|---|---
 | `TDPS_LOGIN`  | Yes | Login for https://davidpakman.com website 
 | `TDPS_PASS`   | Yes | Password for https://davidpakman.com website
+| `TDPS_PATH`   | No  | Path within the container to download images too, defaults to `/app/downloads`
 
 ## Run Container - Docker
 
   ```bash
-  # Pull Image
-  docker pull emackie/tdps-downloader:latest
   # Run
   docker run \
   --rm \
@@ -23,11 +22,21 @@ Scrapes David Pakman's website for links for today's full show and bonus show fo
   emackie/tdps-downloader:latest
   ```
 
+  ```bash
+  # Run
+  docker run \
+  --rm \
+  --name=tdps-downloader \
+  --env TDPS_LOGIN="xxxx" \
+  --env TDPS_PASS="xxxx" \
+  --env TDPS_PATH=/app/downloads/tdps \
+  -v content:/app/downloads \
+  emackie/tdps-downloader:latest
+  ```
+
 ## Run Container - Podman
 
   ```bash
-  # Pull Image
-  podman pull docker.io/emackie/tdps-downloader:latest
   # Run
   podman run \
   --rm \
