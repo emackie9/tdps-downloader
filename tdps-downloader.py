@@ -73,8 +73,13 @@ if __name__ == "__main__":
         download_video(get_link('et_pb_text et_pb_module et_pb_bg_layout_light et_pb_text_align_left  et_pb_text_2', tree), "TDPS Bonus Show " + isoDate, path)
         # with open('redirect_to.html', 'w') as f:
         #     print(response.text, file=f)
+    elif response.status_code == 404:
+        logging.error('invalid response (%d)' % response.status_code)
+        logging.error('likely no episodes available yet at %s' % redirect_to)
+        sys.exit('exiting as no stream available')
     else:
-        logging.error('invalid response, exiting')
+        logging.error('invalid response (%d)' % response.status_code)
+        sys.exit('exiting due to unknown error')
 
     #  Using ffmpeg with hardware decoding
     # video = 'tdps-tmp-video.mp4'

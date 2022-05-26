@@ -5,6 +5,8 @@ services:
       context: .
     image: tdps-downloader:latest
     command: [ "python", "./tdps-downloader.py" ]
+    environment:
+      - TZ=America/Toronto
     volumes:
       - ./downloads:/app/downloads
       - .env:/app/.env
