@@ -1,5 +1,5 @@
 # tdps-downloader
-Scrapes David Pakman's website for links for today's full show and bonus show for The David Pakman Show. Then downloads them using yt-dlp to local storage. 
+Scrapes David Pakman's website for links to today's full show and bonus show, then downloads them using [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) to local storage. 
 
 ## Environment Variables
 
@@ -7,8 +7,8 @@ Scrapes David Pakman's website for links for today's full show and bonus show fo
 |---|---|---
 | `TDPS_LOGIN`  | Yes | Login for https://davidpakman.com website 
 | `TDPS_PASS`   | Yes | Password for https://davidpakman.com website
-| `TDPS_PATH`   | No  | Path within the container to download images too, defaults to `/app/downloads`
-| `TZ`          | No  | Defaults to `UTC`, should use your timezone so you are pulling for the current day
+| `TDPS_PATH`   | No  | Path within the container to store downloaded shows, defaults to `/app/downloads`
+| `TZ`          | No  | Timezone within the container. Defaults to `UTC`, should use your timezone so you are pulling for the current day
 
 ## Run Container - Docker
 
