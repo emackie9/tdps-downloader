@@ -13,7 +13,6 @@ Scrapes David Pakman's website for links to today's full show and bonus show, th
 ## Run Container - Docker
 
   ```bash
-  # Run
   docker run \
   --rm \
   --name=tdps-downloader \
@@ -24,7 +23,6 @@ Scrapes David Pakman's website for links to today's full show and bonus show, th
   ```
 
   ```bash
-  # Run
   docker run \
   --rm \
   --name=tdps-downloader \
@@ -38,7 +36,6 @@ Scrapes David Pakman's website for links to today's full show and bonus show, th
 ## Run Container - Podman
 
   ```bash
-  # Run
   podman run \
   --rm \
   --name=tdps-downloader \
@@ -47,3 +44,14 @@ Scrapes David Pakman's website for links to today's full show and bonus show, th
   -v /outputdir:/app/downloads \
   docker.io/emackie/tdps-downloader:latest
   ```
+
+## Run Docker Compose
+
+Set login and password in a `.env` file:
+  ```
+  TDPS_LOGIN=xxxx
+  TDPS_PASS=xxxx
+  ```
+
+Build and run the image:
+`docker compose up -d --build`
