@@ -1,5 +1,5 @@
 # tdps-downloader
-Scrapes David Pakman's website for links to today's full show and bonus show, then downloads them using [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) to local storage. Pass a date as the first argument to specify the day to download the show for, if null or it fails to parse it will default to today. 
+Scrapes David Pakman's website for links to today's full show and bonus show, then downloads them using [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) to local storage. Pass a date as the first argument to specify the day to download the show for, if null or it fails to parse it will default to `datetime.now()`. 
 
 ## Environment Variables
 
@@ -10,16 +10,28 @@ Scrapes David Pakman's website for links to today's full show and bonus show, th
 | `TDPS_PATH`   | No  | Path within the container to store downloaded shows, defaults to `/app/downloads`
 | `TZ`          | No  | Timezone within the container. Defaults to `America/Toronto`, should use your timezone so you are pulling for the current day
 
-## Run Container - Docker
+## Run Container Examples - Docker
 
+Grab shows for today and store in ~/Downloads.
   ```bash
   docker run \
   --rm \
   --name=tdps-downloader \
   --env TDPS_LOGIN="xxxx" \
-  --env TDPS_PASS="xxxx" \
-  -v /outputdir:/app/downloads \
+  --env TDPS_PASS='xxxx' \
+  -v ~/Downloads:/app/downloads \
   emackie/tdps-downloader:latest
+  ```
+
+Grab shows for 2022-05-27 and store in ~/Downloads.
+  ```bash
+  docker run \
+  --rm \
+  --name=tdps-downloader \
+  --env TDPS_LOGIN="xxxx" \
+  --env TDPS_PASS='xxxx' \
+  -v ~/Downloads:/app/downloads \
+  emackie/tdps-downloader:latest python ./tdps-downloader.py 2022-05-27
   ```
 
 Changing the download path within the container to download to a subdirectory in the mounted folder. 
@@ -28,22 +40,10 @@ Changing the download path within the container to download to a subdirectory in
   --rm \
   --name=tdps-downloader \
   --env TDPS_LOGIN="xxxx" \
-  --env TDPS_PASS="xxxx" \
+  --env TDPS_PASS='xxxx' \
   --env TDPS_PATH=/app/downloads/tdps \
   -v content:/app/downloads \
   emackie/tdps-downloader:latest
-  ```
-
-## Run Container - Podman
-
-  ```bash
-  podman run \
-  --rm \
-  --name=tdps-downloader \
-  --env TDPS_LOGIN="xxxx" \
-  --env TDPS_PASS="xxxx" \
-  -v /outputdir:/app/downloads \
-  docker.io/emackie/tdps-downloader:latest
   ```
 
 ## Run Docker Compose
