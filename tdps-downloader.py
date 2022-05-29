@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from datetime import datetime
+from dateutil.parser import parse
 from dotenv import load_dotenv
 from lxml import html
 import os
@@ -15,14 +16,11 @@ def get_link(c, tree):
     else:
         return ''
 
-def get_output_filename(path, title):
-    name = title + '.mkv'
-    if not path:
-        return name
-    elif path.endswith('/'):
-        return path + name
-    else:
-        return path + '/' + name
+def get_date(args):
+    try:
+        return parse(args[1])
+    except IndexError:
+        return datetime.now()
 
 def download_video(url, title, path = ''):
     if not url:
@@ -46,7 +44,7 @@ if __name__ == "__main__":
 
     log = os.getenv('TDPS_LOGIN')
     pwd = os.getenv('TDPS_PASS')
-    date = datetime.now()
+    date = get_date(sys.argv)
     redirect_to = date.strftime("https://davidpakman.com/%Y/%m/%B-%-d-%Y/").lower()
     # redirect_to='https://davidpakman.com/2021/10/october-4-2021/'
     # redirect_to='https://davidpakman.com/2021/09/september-29-2021/'
@@ -75,7 +73,7 @@ if __name__ == "__main__":
         #     print(response.text, file=f)
     elif response.status_code == 404:
         logging.error('invalid response (%d)' % response.status_code)
-        logging.error('likely no episodes available yet at %s' % redirect_to)
+        logging.error('likely no episodes available at %s' % redirect_to)
         sys.exit('exiting as no stream available')
     else:
         logging.error('invalid response (%d)' % response.status_code)

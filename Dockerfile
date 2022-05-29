@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY tdps-downloader.py ./
 RUN chmod +x tdps-downloader.py
 
+ENV TZ America/Toronto
 ENV TDPS_PATH /app/downloads
 
 CMD [ "python", "./tdps-downloader.py" ]
