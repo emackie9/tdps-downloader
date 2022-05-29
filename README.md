@@ -46,7 +46,7 @@ Changing the download path within the container to download to a subdirectory in
   emackie/tdps-downloader:latest
   ```
 
-## Run Docker Compose
+## Build source code with Docker Compose
 
 Set login and password in a `.env` file:
   ```
