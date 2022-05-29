@@ -4,7 +4,8 @@ services:
     build:
       context: .
     image: tdps-downloader:latest
-    command: [ "python", "./tdps-downloader.py", "2022-05-27" ]
+    container_name: tdps-downloader
+    # command: [ "python", "./tdps-downloader.py", "2022-05-27" ]
     environment:
       - TZ=America/Toronto
     volumes:
