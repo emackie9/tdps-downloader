@@ -1,5 +1,6 @@
 FROM python:3-alpine
 
+RUN apk add dumb-init
 RUN apk add build-base
 RUN apk add ffmpeg
 RUN apk add libxml2-dev
@@ -19,4 +20,5 @@ RUN crontab tdps-downloader-cron
 ENV TZ America/Toronto
 ENV TDPS_PATH /app/downloads
 
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD [ "crond", "-f" ]

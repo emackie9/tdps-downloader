@@ -1,3 +1,4 @@
 # must be ended with a new line "LF" (Unix) and not "CRLF" (Windows)
  0 16 * * 1-5 python /app/tdps-downloader.py > /proc/1/fd/1 2>/proc/1/fd/2
+# * * * * * echo "test" > /proc/1/fd/1 2>/proc/1/fd/2
 # An empty line is required at the end of this file for a valid cron file.
