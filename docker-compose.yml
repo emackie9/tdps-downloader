@@ -9,5 +9,10 @@ services:
     environment:
       - TZ=America/Toronto
     volumes:
-      - ./downloads:/app/downloads
       - .env:/app/.env
+      - tdps_downloads:/app/downloads
+
+volumes:
+  tdps_downloads:
+    name: tdps_downloads
+    driver: local

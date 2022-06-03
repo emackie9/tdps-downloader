@@ -1,10 +1,11 @@
 FROM python:3-alpine
 
-RUN apk add dumb-init
-RUN apk add build-base
-RUN apk add ffmpeg
-RUN apk add libxml2-dev
-RUN apk add libxslt-dev
+RUN apk add --no-cache \
+    dumb-init \
+    build-base \
+    ffmpeg \
+    libxml2-dev \
+    libxslt-dev
 
 WORKDIR /app
 
