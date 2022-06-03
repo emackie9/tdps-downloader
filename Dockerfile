@@ -5,7 +5,8 @@ RUN apk add --no-cache \
     build-base \
     ffmpeg \
     libxml2-dev \
-    libxslt-dev
+    libxslt-dev \
+    tzdata
 
 WORKDIR /app
 
